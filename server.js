@@ -8,6 +8,7 @@ import multer from "multer";
 import { v4 } from "uuid";
 import * as utils from "./utils.js";
 import cors from "cors";
+import fs from 'fs';
 
 var storage = multer.diskStorage({
   destination: function (_req, _file, cb) {
@@ -81,6 +82,37 @@ app.post("/upload", upload.any(), async (req, res) => {
     });
   }
 });
+
+app.get('/video', (req, res)=>{
+  const path = 'uploads/SSIS-158 Kawakita Saika Re_ Start! Chapter 2_480p.mp4'
+  const stat = fs.statSync(path)
+  const fileSize = stat.size
+  const range = req.headers.range
+  if (range) {
+    const parts = range.replace(/bytes=/, "").split("-")
+    const start = parseInt(parts[0], 10)
+    const end = parts[1] 
+      ? parseInt(parts[1], 10)
+      : fileSize-1
+    const chunksize = (end-start)+1
+    const file = fs.createReadStream(path, {start, end})
+    const head = {
+      'Content-Range': `bytes ${start}-${end}/${fileSize}`,
+      'Accept-Ranges': 'bytes',
+      'Content-Length': chunksize,
+      'Content-Type': 'video/mp4',
+    }
+    res.writeHead(206, head);
+    file.pipe(res);
+  } else {
+    const head = {
+      'Content-Length': fileSize,
+      'Content-Type': 'video/mp4',
+    }
+    res.writeHead(200, head)
+    fs.createReadStream(path).pipe(res)
+  }
+})
 
 app.get("*", (_req, res) => {
   res.sendFile(path.join(__dirname + "/ui/build/index.html"));
