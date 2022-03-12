@@ -1,0 +1,41 @@
+{
+  "name": "video_watcher_uploader",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "concurrently \"nodemon server.js\" \"cd ui && npm start\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/shaw-s-yu/video_watcher_uploader.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/shaw-s-yu/video_watcher_uploader/issues"
+  },
+  "type": "module",
+  "homepage": "https://github.com/shaw-s-yu/video_watcher_uploader#readme",
+  "dependencies": {
+    "@mui/styles": "^5.5.0",
+    "concurrently": "^7.0.0",
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.0",
+    "express": "^4.17.3",
+    "fs": "^0.0.1-security",
+    "multer": "^1.4.4",
+    "mysql": "^2.18.1",
+    "nodemon": "^2.0.15",
+    "uuid": "^8.3.2"
+  },
+  "devDependencies": {
+    "eslint": "^7.32.0",
+    "eslint-config-standard": "^16.0.3",
+    "eslint-plugin-import": "^2.25.4",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-promise": "^5.2.0",
+    "eslint-plugin-react": "^7.29.3"
+  }
+}
