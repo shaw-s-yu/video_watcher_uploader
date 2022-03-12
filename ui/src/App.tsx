@@ -5,7 +5,7 @@ import VideoWatcher from './components/VideoWatcher.react';
 function App() {
   return (
     <div className="App">
-      <FileUploader />
+      <label><FileUploader /></label>
       <VideoWatcher />
     </div>
   );

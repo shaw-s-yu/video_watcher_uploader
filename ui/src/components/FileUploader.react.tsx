@@ -43,15 +43,16 @@ export default function FileUploader() {
 
   }, [fileStates])
   
-  
   return (
     <>
       <Input accept="*" multiple type="file" onChange={({ target }) => {
+        console.log('hi')
         if (target.files == null) {
           return;
         }
         setFileStates([...Object.values(target.files).map((file) => ({ file, lastModified: file.lastModified, duration: 0, isUploaded: !isFileVideo(file.name) }))])
-      }} />
+      }} 
+      />
       <Button variant="contained" component="span">
         Upload
       </Button>

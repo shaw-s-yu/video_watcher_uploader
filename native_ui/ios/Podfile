@@ -12,6 +12,8 @@ target 'native_ui' do
     :hermes_enabled => false
   )
 
+  pod 'RNFS', :path => '../node_modules/react-native-fs'
+
   target 'native_uiTests' do
     inherit! :complete
     # Pods for testing
